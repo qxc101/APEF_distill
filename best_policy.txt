@@ -1,0 +1,22 @@
+METRICS:
+1. Peak Period Alignment - How well do the peak periods match?
+2. Derivative Consistency - How similar are the rates of change?
+3. Amplitude Stability - How similar are the value ranges?
+4. Tolerance Level - How similar are the variations?
+5. Correlation with Target - How well do values correlate?
+
+SCORING FORMULAS:
+1. Peak Period Alignment Score = max(0, 1 - |peak_diff| / max_peak) * 1.5
+2. Derivative Consistency Score = max(0, 1 - |deriv_diff| / max_deriv) * 1.5  
+3. Amplitude Stability Score = max(0, 1 - |range_diff| / max_range) * 1.5
+4. Tolerance Level Score = max(0, 1 - |std_diff| / max_std) * 1.5
+5. Correlation Score = max(0, correlation_coefficient) * 4.0
+
+CALCULATION STEPS:
+- Find peaks in both series (local maxima)
+- Calculate derivatives using adjacent differences
+- Compute ranges (max - min) and standard deviations
+- Calculate Pearson correlation coefficient
+- Apply formulas above and sum all scores
+
+TOTAL SCORE = Sum of all 5 component scores (Range: 0-10)
